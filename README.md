@@ -1,20 +1,17 @@
 Webpack 3 Boilerplate
 ===========
 
-[![Dependency Status](https://david-dm.org/cvgellhorn/webpack-boilerplate.svg)](https://david-dm.org/cvgellhorn/webpack-boilerplate) 
-[![devDependency Status](https://david-dm.org/cvgellhorn/webpack-boilerplate/dev-status.svg)](https://david-dm.org/cvgellhorn/webpack-boilerplate)
-
-> Plain webpack 3 boilerplate with Babel, SASS and lodash on board
+> Webpack 3 boilerplate with Babel, Bootstrap 3 SASS and FontAwesome 4
 
 ## Requirements
-You only need <b>node.js</b> pre-installed and you’re good to go. 
+You only need <b>node.js</b> pre-installed and you’re good to go.
 
 If you don’t want to work with lodash, just remove it from the node packages and the webpack config.
 
 ## Download
 Download in current directory
 ```sh
-$ curl -L -o master.zip https://github.com/cvgellhorn/webpack-boilerplate/archive/master.zip && unzip master.zip && rm master.zip && mv ./webpack-boilerplate-master/* ./
+$ curl -L -o master.zip https://github.com/lauragieco/webpack-boilerplate/archive/master.zip && unzip master.zip && rm master.zip && mv ./webpack-boilerplate-master/* ./
 ```
 
 ## Setup

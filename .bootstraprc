@@ -1,0 +1,10 @@
+{
+  "bootstrapVersion": 3,
+  "extractStyles": true,
+  "preBootstrapCustomizations": "./assets/styles/customizations/pre-customizations.scss",
+  "bootstrapCustomizations": "./assets/styles/customizations/customizations.scss",
+  "appStyles": "./assets/styles/index.scss",
+  "styleLoaders": ["style-loader", "css-loader", "resolve-url-loader", "sass-loader"],
+  "styles": true,
+  "scripts": true,
+}

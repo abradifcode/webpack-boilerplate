@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Is the current build a development build
 const IS_DEV = (process.env.NODE_ENV === 'dev');
@@ -15,12 +16,11 @@ const appHtmlTitle = 'Webpack Boilerplate';
  * Webpack Configuration
  */
 module.exports = {
-    entry: {
-        vendor: [
-            'lodash'
-        ],
-        bundle: path.join(dirApp, 'index')
-    },
+    entry: [
+        'bootstrap-loader',
+        'font-awesome/scss/font-awesome.scss',
+        path.join(dirApp, 'index')
+    ],
     resolve: {
         modules: [
             dirNode,
@@ -34,14 +34,17 @@ module.exports = {
         }),
 
         new webpack.ProvidePlugin({
-            // lodash
-            '_': 'lodash'
+            jQuery: 'jquery',
+            $: 'jquery',
+            jquery: 'jquery'
         }),
 
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'index.ejs'),
             title: appHtmlTitle
-        })
+        }),
+
+        new ExtractTextPlugin("css/styles.css")
     ],
     module: {
         rules: [
@@ -71,24 +74,29 @@ module.exports = {
 
             // CSS / SASS
             {
-                test: /\.scss/,
-                use: [
-                    'style-loader',
-                    {
+                test: /\.(css|scss)$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                      {
                         loader: 'css-loader',
                         options: {
-                            sourceMap: IS_DEV
+                          sourceMap: IS_DEV
                         }
-                    },
-                    {
+                      },
+                      {
+                        loader: 'postcss-loader'
+                      },
+                      {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: IS_DEV,
                             includePaths: [dirAssets]
                         }
-                    }
-                ]
-            },
+                      }
+                    ]
+                  })
+              },
 
             // EJS
             {
@@ -103,7 +111,23 @@ module.exports = {
                 options: {
                     name: '[path][name].[ext]'
                 }
-            }
+            },
+
+            // Fonts
+            {
+              test: /\.(eot|ttf|woff|woff2|svg)$/,
+              exclude: /images/,
+              loader: 'file-loader?name=/fonts/[name].[ext]'
+            },
+
+            // font-awesome
+            {
+              test: /font-awesome\.config\.js/,
+              use: [
+                { loader: 'style-loader' },
+                { loader: 'font-awesome-loader' }
+              ]
+            },
         ]
     }
 };
