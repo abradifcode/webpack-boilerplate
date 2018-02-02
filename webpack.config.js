@@ -58,23 +58,9 @@ module.exports = {
                 }
             },
 
-            // STYLES
+            // SCSS
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: IS_DEV
-                        }
-                    },
-                ]
-            },
-
-            // CSS / SASS
-            {
-                test: /\.(css|scss)$/,
+                test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
@@ -85,7 +71,10 @@ module.exports = {
                         }
                       },
                       {
-                        loader: 'postcss-loader'
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: IS_DEV
+                        }
                       },
                       {
                         loader: 'sass-loader',
