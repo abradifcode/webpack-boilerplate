@@ -102,14 +102,14 @@ module.exports = {
                 }
             },
 
-            // Fonts
+            // FONTS
             {
               test: /\.(eot|ttf|woff|woff2|svg)$/,
               exclude: /images/,
               loader: 'file-loader?name=/fonts/[name].[ext]'
             },
 
-            // font-awesome
+            // FONT_AWESOME
             {
               test: /font-awesome\.config\.js/,
               use: [
