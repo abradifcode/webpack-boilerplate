@@ -64,25 +64,31 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
-                      {
-                        loader: 'css-loader',
-                        options: {
-                          sourceMap: IS_DEV
+                        {
+                            loader: 'css-loader',
+                            options: {
+                              sourceMap: IS_DEV
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                sourceMap: IS_DEV
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: IS_DEV,
+                                includePaths: [dirAssets]
+                            }
+                        },
+                        {
+                            loader: 'sass-resources-loader',
+                            options: {
+                                resources: "./assets/styles/sass-resources.scss"
+                            }
                         }
-                      },
-                      {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: IS_DEV
-                        }
-                      },
-                      {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: IS_DEV,
-                            includePaths: [dirAssets]
-                        }
-                      }
                     ]
                   })
               },
